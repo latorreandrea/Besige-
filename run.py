@@ -51,6 +51,9 @@ difficulty = input("choose a numerical value between 1 and 3\n")
 
 
 def prepare_siege():
+    '''
+    calculate the size of the army based on the choice of units
+    '''
     print("As attacker you will start with 200 units of food")
     print("at the end of each round you will have consumed")
     print("as many units of food as there are men on the field")
@@ -58,16 +61,47 @@ def prepare_siege():
 
     spy_number = input("how many spy do you take?\n")
     scout_number = input("how many scout do you take?\n")
+    MAX_SIZE = 200
 
     print("creating your army...")
-    soldiers_number = 200 - int(spy_number * 10) - int(scout_number * 5)
+    soldiers_number = MAX_SIZE - int(spy_number) * 10 - int(scout_number) * 5
     army_size = soldiers_number + int(spy_number) + int(scout_number)
     print(f"Your army is {army_size} strong")
     print(f"the army is made up of {soldiers_number} regular soldiers")
     print(f"{spy_number} spies")
     print(f"{scout_number} scouts")
+    return army_size
 
+starting_army = prepare_siege()
 
+def choice():
+    '''
+    the user chooses what action to take for the current turn
+    '''
+    print(f"Directions sir {name}?")
+    choice = input("press:\n 1 to attack\n 2 to foraging\n 3 to spy\n")
+    if choice == "1":
+        print("we are attacking the walls...")
+        #attack()
+    if choice == "2":
+        print("looking for supplies...")
+        #foraging()
+    if choice == "3":
+        print("infiltrating the castle...")
+        #spy()
+
+'''
+def stocks():
+    '''
+    #calculate the remaining food at the end of the day
+    '''
+    INITIAL_STOCKS = 300
+    first_day_stock = INITIAL_STOCKS - starting_army
+    today_stock = first_day_stock - army
+    print(f"{today_stock} are the stocks in the end of this day")
+
+stocks()    
+'''
 def start_game():
     prepare_siege()
 
