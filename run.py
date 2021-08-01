@@ -72,7 +72,17 @@ def prepare_siege():
     print(f"{scout_number} scouts")
     return army_size
 
-starting_army = prepare_siege()
+#creare lista vuota della dimensione attuale dell'esercito
+#creare lista vuota delle perdite
+#creare lista vuota del cibo
+def attack():
+    '''
+    based on how the attack went, it is estimated how many men defend the castle.
+    if attack succeeded the player conquer the wall 
+    '''
+    c_grandezzaesercito = 
+    perdite =
+    esercitoattuale = c_grandezzaesercito - perdite
 
 def choice():
     '''
@@ -88,13 +98,12 @@ def choice():
         #foraging()
     if choice == "3":
         print("infiltrating the castle...")
-        #spy()
-
+        #spy()    
 '''
 def stocks():
-    '''
+    
     #calculate the remaining food at the end of the day
-    '''
+    
     INITIAL_STOCKS = 300
     first_day_stock = INITIAL_STOCKS - starting_army
     today_stock = first_day_stock - army
@@ -103,7 +112,8 @@ def stocks():
 stocks()    
 '''
 def start_game():
-    prepare_siege()
+    starting_army = prepare_siege()
+    choice()
 
 start_game()
 
