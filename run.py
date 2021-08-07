@@ -40,6 +40,7 @@ def tutorial():
     print('''   spy can tell us how many men defend the castle
     or they can sabotage food supplies\n''')
 
+
 tutorial()
 
 
@@ -70,11 +71,26 @@ def prepare_siege():
     print(f"the army is made up of {soldiers_number} regular soldiers")
     print(f"{spy_number} spies")
     print(f"{scout_number} scouts")
+    print("You will start with 200 units of food")
     return army_size
 
-#creare lista vuota della dimensione attuale dell'esercito
-#creare lista vuota delle perdite
-#creare lista vuota del cibo
+a_food = 200
+d_food = 1000
+
+
+
+class AttackingArmy:
+    def __init__(self, a_army_size, a_food):
+        self.army_size = army_size
+        self.food = food
+
+class DefendingArmy:
+    def __init__(self, d_army_size, d_food):
+        self.army_size = army_size
+        self.food = food
+
+
+
 def attack():
     '''
     based on how the attack went, it is estimated how many men defend the castle.
