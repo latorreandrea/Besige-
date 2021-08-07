@@ -1,4 +1,14 @@
+import random
 # python code goes here
+
+a_food = [200]
+d_food = [1000]
+d_army_size = []
+a_army_size = []
+scout_number = 0
+spy_number = 0
+
+
 print("  ____                 _")
 print(" |  _ \               (_)")
 print(" | |_) |   ___   ___   _    ___    __ _    ___")
@@ -41,7 +51,7 @@ def tutorial():
     or they can sabotage food supplies\n''')
 
 
-tutorial()
+#tutorial()
 
 
 print("Who will lead the siege?")
@@ -55,6 +65,8 @@ def prepare_siege():
     '''
     calculate the size of the army based on the choice of units
     '''
+    global spy_number
+    global scout_number
     print("As attacker you will start with 200 units of food")
     print("at the end of each round you will have consumed")
     print("as many units of food as there are men on the field")
@@ -72,33 +84,66 @@ def prepare_siege():
     print(f"{spy_number} spies")
     print(f"{scout_number} scouts")
     print("You will start with 200 units of food")
-    return army_size
-
-a_food = 200
-d_food = 1000
-
-
-
-class AttackingArmy:
-    def __init__(self, a_army_size, a_food):
-        self.army_size = army_size
-        self.food = food
-
-class DefendingArmy:
-    def __init__(self, d_army_size, d_food):
-        self.army_size = army_size
-        self.food = food
+    
+    a_army_size.append(army_size)
+    castle_garrison = random.randint(50, 100)
+    d_army_size.append(castle_garrison)
 
 
+def take_wall():
+    print("sire we have taken the walls!")
+def repelled():
+    print("they rejected us sir!")
 
 def attack():
     '''
     based on how the attack went, it is estimated how many men defend the castle.
-    if attack succeeded the player conquer the wall 
+    aa_army_size is for current/actual attaking army size.
+    If attack succeeded the player conquer the wall
     '''
-    c_grandezzaesercito = 
-    perdite =
-    esercitoattuale = c_grandezzaesercito - perdite
+    if d_army_size[-1] > 90:
+        aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 25)/100)
+        take_wall() if random.randint(0, 10) == 5 else print("they rejected us")
+    elif d_army_size[-1] > 80:
+        aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 20)/100)
+        take_wall() if random.randint(0, 8) == 5 else print("they rejected us")
+    elif d_army_size[-1] > 60:
+        aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 15)/100)
+        take_wall() if random.randint(0, 7) == 5 else print("they rejected us")
+    elif d_army_size[-1] > 30:
+        aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 10)/100)
+        take_wall() if random.randint(0, 6) == 5 else print("they rejected us")
+    else:
+        aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 5)/100)
+        take_wall() if random.randint(0, 5) == 5 else print("they rejected us")
+    a_army_size.append(aa_army_size)
+    print(f"the men returned from combat are {a_army_size[-1]}")
+
+
+def foraging():
+    '''
+    look for supplies. Attention! if you are attacked
+    you have a 1 in 3 chance of losing men in a sortie
+    '''
+    food = a_food[-1] + int(scout_number) * random.randint(10, 50)
+    a_food.append(food)
+    print(f"now we have {food} unit of food!")
+
+
+def discover():
+    if random.randint(0, 100) >= 50:
+        spy_number -= 1
+    else print ("the enemy have" + d_army_size[-1] + "soldiers!")
+
+def sabotage():
+    
+def spy():
+    '''
+    tell us how many men defend the castle or they can sabotage food supplies
+    '''
+    if random.randint(0, 100) >= 80:
+        sabotage()
+    else discover()
 
 def choice():
     '''
@@ -108,35 +153,27 @@ def choice():
     choice = input("press:\n 1 to attack\n 2 to foraging\n 3 to spy\n")
     if choice == "1":
         print("we are attacking the walls...")
-        #attack()
+        attack()
     if choice == "2":
         print("looking for supplies...")
-        #foraging()
-    if choice == "3":
-        print("infiltrating the castle...")
+        foraging()
+    #if choice == "3":
+        #print("infiltrating the castle...")
         #spy()    
-'''
-def stocks():
-    
-    #calculate the remaining food at the end of the day
-    
-    INITIAL_STOCKS = 300
-    first_day_stock = INITIAL_STOCKS - starting_army
-    today_stock = first_day_stock - army
-    print(f"{today_stock} are the stocks in the end of this day")
 
-stocks()    
-'''
+
+#def stocks():
+    '''
+    Calculate the remaining food at the end of the day
+    '''
+#    stock = [300]    
+#    today_stock = stock[-1] - army
+#    print(f"{today_stock} are the stocks in the end of this day")
+
+#stocks()    
+
 def start_game():
     starting_army = prepare_siege()
     choice()
 
 start_game()
-
-"""
-day = 1
-while True:
-   choose = input("What do you want to do, my lord?")
-   print(f"{day} you did {choose}")
-   day = day + 1
-"""
