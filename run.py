@@ -19,42 +19,6 @@ print(" |____/   \___| |___/ |_|  \___|  \__, |  \___|")
 print("                                   __/ |")
 print("                                  |___/")
 
-
-def tutorial():
-    """
-    Shows how to play.
-    Shows the types of units and their peculiarities
-    """
-    print('''    In this game you will lead the attack of a siege
-    at the beginning of the game over the name and difficulty of the siege
-    you can choose how to compose your army\n''')
-
-    print('''    your army can have the maximum size of 200 points
-    besides the regular soldiers that are worth only 1 point
-    you can choose how many scouts and spy to take with you\n''')
-
-    print('''    the value of the spy is 10 points.
-    the value of the scouts is 5 points
-    the remaining points will be converted into regular soldiers
-    up to an army value of 200 points\n''')
-
-    print('''    At the start of each turn, you can choose what your army will focus on.
-    the possible actions will be: Attack, forage and spy\n''')
-
-    print('''    attacking will allow you to try to conquer the walls by losing men.
-    but in the end you can get an estimate based on the men lost
-    on how big the enemy army is\n''')
-
-    print('''   forages at cost of one day of siege
-    can give from 0 to 50 unit of food per scout\n''')
-
-    print('''   spy can tell us how many men defend the castle
-    or they can sabotage food supplies\n''')
-
-
-#tutorial()
-
-
 print("Who will lead the siege?")
 name = input("player name:\n")
 
@@ -206,6 +170,42 @@ def d_stocks():
     '''
     d_today_stock = d_food[-1] - d_army_size[-1]    
 
+def tutorial():
+    """
+    Shows how to play.
+    Shows the types of units and their peculiarities
+    """
+    tutorial = input("press:\n 1 to continue tutorial\n 2 to start game\n 
+    if tutorial == "1":
+        print('''    In this game you will lead the attack of a siege
+        at the beginning of the game over the name and difficulty of the siege
+        you can choose how to compose your army\n''')
+        print('''    your army can have the maximum size of 200 points
+        besides the regular soldiers that are worth only 1 point
+        you can choose how many scouts and spy to take with you\n''')
+
+        print('''    the value of the spy is 10 points.
+        the value of the scouts is 5 points
+        the remaining points will be converted into regular soldiers
+        up to an army value of 200 points\n''')
+
+        print('''    At the start of each turn, you can choose what your army will focus on.
+        the possible actions will be: Attack, forage and spy\n''')
+
+        print('''    attacking will allow you to try to conquer the walls by losing men.
+        but in the end you can get an estimate based on the men lost
+        on how big the enemy army is\n''')
+
+        print('''   forages at cost of one day of siege
+        can give from 0 to 50 unit of food per scout\n''')
+
+        print('''   spy can tell us how many men defend the castle
+        or they can sabotage food supplies\n''')
+
+    if tutorial == "2":
+        start_game()
+   
+
 def game_stage():
     while True:
         choice()
@@ -216,5 +216,5 @@ def start_game():
     starting_army = prepare_siege()
     game_stage()
     
+tutorial()
 
-start_game()
