@@ -1,7 +1,8 @@
 import random
 # python code goes here
 
-a_food = [200]
+a_live = False 
+a_food = [300]
 d_food = [1000]
 d_army_size = []
 a_army_size = []
@@ -186,23 +187,31 @@ def choice():
     if choice == "2":
         print("looking for supplies...")
         foraging()
-    #if choice == "3":
-        #print("infiltrating the castle...")
-        #spy()    
+    if choice == "3":
+        print("infiltrating the castle...")
+        spy()    
 
 
-#def stocks():
+def a_stocks():
     '''
-    Calculate the remaining food at the end of the day
+    Calculate the remaining food at the end of the day for the attakers
     '''
-#    stock = [300]    
-#    today_stock = stock[-1] - army
-#    print(f"{today_stock} are the stocks in the end of this day")
+    a_today_stock = a_food[-1] - a_army_size[-1]    
+    print(f"{today_stock} are the stocks in the end of this day")
 
-#stocks()    
+def d_stocks():
+    '''
+    Calculate the remaining food at the end of the day for the defenders
+    '''
+    d_today_stock = d_food[-1] - d_army_size[-1]    
+
+def game_stage():
+    while true:
+        choice()
+        stocks()
 
 def start_game():
-    starting_army = prepare_siege()
-    choice()
+    starting_army = prepare_siege()    
+    main()
 
 start_game()
