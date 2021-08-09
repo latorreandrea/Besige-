@@ -84,20 +84,29 @@ def prepare_siege():
     print(f"{spy_number} spies")
     print(f"{scout_number} scouts")
     print("You will start with 200 units of food")
-    
+
     a_army_size.append(army_size)
     castle_garrison = random.randint(50, 100)
     d_army_size.append(castle_garrison)
 
 
 def take_wall():
+    '''
+    go to attack() definition
+    '''
     print("sire we have taken the walls!")
+
+
 def repelled():
+    '''
+    go to attack() definition
+    '''
     print("they rejected us sir!")
+
 
 def attack():
     '''
-    based on how the attack went, it is estimated how many men defend the castle.
+    based on how the attack went, it is estimated how many defend the castle.
     aa_army_size is for current/actual attaking army size.
     If attack succeeded the player conquer the wall
     '''
@@ -131,19 +140,39 @@ def foraging():
 
 
 def discover():
-    if random.randint(0, 100) >= 50:
+    '''
+    go to spy() definition
+    '''
+    if random.randint(0, 100) > 50:
         spy_number -= 1
-    else print ("the enemy have" + d_army_size[-1] + "soldiers!")
+        print("our man has not returned")
+        print(f"now we have {spy_number} spy...")
+    else:
+        print("The army in the castle is", d_army_size[-1], "strong")
+        resistance = int((d_food[-1]) / (d_army_size[-1]))
+        print(f"They can resist {resistance} days")
+
 
 def sabotage():
-    
+    '''
+    go to spy() definition
+    '''
+    if random.randint(0, 100) <= int(int(spy_number) * 1.5):
+        castle_supply = d_food[-1] - (random.randint(0, 10) * int(spy_number))
+        d_food.append(castle_supply)
+        print()
+
+
+
+
 def spy():
     '''
     tell us how many men defend the castle or they can sabotage food supplies
     '''
     if random.randint(0, 100) >= 80:
         sabotage()
-    else discover()
+    else:
+        discover()
 
 def choice():
     '''
