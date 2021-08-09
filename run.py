@@ -144,8 +144,9 @@ def discover():
     '''
     go to spy() definition
     '''
+    global spy_number
     if random.randint(0, 100) > 50:
-        spy_number -= 1
+        spy_number = int(spy_number) - 1
         print("our man has not returned")
         print(f"now we have {spy_number} spy...")
     else:
@@ -161,7 +162,7 @@ def sabotage():
     if random.randint(0, 100) <= int(int(spy_number) * 1.5):
         castle_supply = d_food[-1] - (random.randint(0, 10) * int(spy_number))
         d_food.append(castle_supply)
-        print()
+        print(d_food[-1])
 
 
 
@@ -189,7 +190,7 @@ def choice():
         foraging()
     if choice == "3":
         print("infiltrating the castle...")
-        spy()    
+        spy()
 
 
 def a_stocks():
@@ -197,7 +198,7 @@ def a_stocks():
     Calculate the remaining food at the end of the day for the attakers
     '''
     a_today_stock = a_food[-1] - a_army_size[-1]    
-    print(f"{today_stock} are the stocks in the end of this day")
+    print(f"{a_today_stock} are the stocks in the end of this day")
 
 def d_stocks():
     '''
@@ -206,12 +207,14 @@ def d_stocks():
     d_today_stock = d_food[-1] - d_army_size[-1]    
 
 def game_stage():
-    while true:
+    while True:
         choice()
-        stocks()
+        a_stocks()
+        d_stocks()
 
 def start_game():
-    starting_army = prepare_siege()    
-    main()
+    starting_army = prepare_siege()
+    game_stage()
+    
 
 start_game()
