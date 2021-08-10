@@ -4,6 +4,7 @@ a_food = [300]
 d_food = [1000]
 d_army_size = []
 a_army_size = []
+days = []
 scout_number = 0
 spy_number = 0
 alive = True
@@ -154,7 +155,7 @@ def spy():
     """
     tell us how many men defend the castle or they can sabotage food supplies
     """
-    if spy_number > "0":
+    if spy_number > 0:
         if random.randint(0, 100) >= 80:
             sabotage()
         else:
@@ -211,7 +212,7 @@ def end_game():
     if d_food[-1] < 1:
         print("the enemy can no longer resist! they are short of food!")
         print("You win the besiege!")
-    
+    menu()
 
 
 def tutorial():
@@ -249,7 +250,7 @@ def tutorial():
             "or they can sabotage food supplies\n"
         )
     ]
-    
+
     tutorial = input("press:1 to start tutorial 2 to start game\n")
     while tutorial not in ["1", "2"]:
         tutorial = input("press:1 to start tutorial 2 to start game\n")
@@ -261,11 +262,11 @@ def tutorial():
             break
         if tutorial == "1":
             print(text)
-        tutorial = input("press:1 to continue tutorial 2 to start game\n")
+            tutorial = input("press:1 to continue tutorial 2 to start game\n")
         while tutorial not in ["1", "2"]:
             tutorial = input("press:1 to continue tutorial 2 to start game\n")
         if tutorial == "2":
-            break
+            start_game()
         i += 1
 
     start_game()
@@ -279,14 +280,19 @@ def game_stage():
 
 
 def menu():
-    analyses = input("press 1 to analyze match data\n 2 to exit the game\n3 to restart the game\n")
+    for number in range(len(a_army_size)):
+        days.append(number + 1)
+
+    analyses = input("press 1 to analyze match data\n"
+    "press 2 to exit the game\n" 
+    "press 3 to restart the game\n")
     if analyses == 1:
+
         print("analyzing the battle...")
-        days = []
-        for number in range(len(a_army_size)):
-            days.append(number + 1)
+
         for x, y, z in zip(a_army_size, a_food, days):
             print(f"Day{z}:you have {x} man, {y} food")
+
 
 
 def start_game():
