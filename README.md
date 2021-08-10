@@ -1,45 +1,108 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# BESIGE 
 
-Welcome latorreandrea,
+## Code Institute Portfolio 3 Project
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+![Logo](put here an image of a besige!)
 
-## Gitpod Reminders
+BESIGE is a Python terminal game, where the user lead an attak to a castle
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+A live version of the game can be found [here](insert link)
 
-`python3 -m http.server`
+![immagineschermi](link to other image)
 
-A blue button should appear to click: *Make Public*,
+# How to play
 
-Another blue button should appear to click: *Open Browser*.
+# Scope
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+In this game you will lead the attack of a siege at the beginning of the game over the name and difficulty of the siege
+you can choose how to compose your army and how to approach the siege "day by day" via input.
 
-A blue button should appear to click: *Make Public*,
+The aim of the game is to conquer the castle by force or to conquer it by wasting away.
 
-Another blue button should appear to click: *Open Browser*.
+You win when all the walls of the castle are conquered or when the defending garrison runs out of food.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+Attention! you could run out of food or men in that case you lose the game!
 
-## Updates Since The Instructional Video
+# Set Army
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Your army can have the maximum size of 200 points.
+and you will start whit only 300 unit of food
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+the troops you can choose are two types:
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+- spy : their value is 10 points
+- scout : their value is 5 points
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+the remaining points will be converted into regular soldiers:
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+- regular soldiers : their value is 1 point
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### 200 point = soldiers + spy x 10point + scout x 5point
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+In the meantime the computer will have an army composed of a variable number of troops ranging from 50 to 100 soldiers.
+The defenders were ready and have amassed 1000 units in their food supplies.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+# Maintaining Unit:
 
---------
+At the end of each turn you will consume an amount of food equal to the size of your army.
 
-Happy coding!
+Don't make it too big that you eat too much food quickly and not too small that you can't attack the walls.
+
+## Spy:
+
+spy can tell to the user how many men defend the castle.
+if the user is lucky he may be able to sabotage the computer's food supply.
+Sabotage is related to the number of spies in the army!
+
+Attention spying is a risky action and you could risk losing a spy in action.
+
+If you run out of spies, you will no longer be able to spy on your opponent
+
+## Scout:
+
+The scouts allow to forages at cost of one day of siege can give from 10 to 50 unit of food per scout
+
+but remember you could be attacked in a defender sortie!
+                        
+## Regular soldier:
+
+They are the meat of the slaughter, they number in the army, and as long as you have an army you can storm the castle
+Attacking will allow you to try to conquer the walls by losing men.
+but in the end you can get an estimate based on the men lost on how big the enemy army is:
+
+If the defenders are more than 90, you will lose 25% of your army
+
+If the defenders are more than 80, you will lose 20% of your army
+
+If the defenders are more than 60, you will lose 15% of your army
+
+If the defenders are more than 30, you will lose 10% of your army
+
+If the defenders are less than 30, you will lose 5% of your army
+
+
+# Features:
+# Future Features:
+
+# Data Model
+
+# Testing
+
+# Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+1. Fork or clone this repository
+
+2. Create a new Heroku app
+
+3. Set the buildbacks to Puthon and NodeJS in that order
+
+4. Link the Heroku app to repository
+
+5. Click on Deploy
+
+
+# Credit
+
+Thank you for taking the time to read my project. 
