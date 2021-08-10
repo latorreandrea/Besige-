@@ -42,12 +42,12 @@ def prepare_siege():
         print(f"the army is made up of {soldiers_number} regular soldiers")
         print(f"{spy_number} spies")
         print(f"{scout_number} scouts")
-        print("You will start with 200 units of food")
+        print("You will start with 300 units of food")
         a_army_size.append(army_size)
         castle_garrison = random.randint(50, 100)
         d_army_size.append(castle_garrison)
         game_stage()
-        
+
     else:
         print('''your army can't be less than 1 man:
         remember 1 spy is euqal to 10 soldiers
@@ -74,24 +74,31 @@ def attack():
     '''
     based on how the attack went, it is estimated how many defend the castle.
     aa_army_size is for current/actual attaking army size.
+    ad_army_size is for current/actual defending army size.
     If attack succeeded the player conquer the wall
     '''
     if d_army_size[-1] > 90:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 25)/100)
         take_wall() if random.randint(0, 10) == 5 else print("they rejected us")
+        ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 5)/100)
     elif d_army_size[-1] > 80:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 20)/100)
         take_wall() if random.randint(0, 8) == 5 else print("they rejected us")
+        ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 8)/100)
     elif d_army_size[-1] > 60:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 15)/100)
         take_wall() if random.randint(0, 7) == 5 else print("they rejected us")
+        ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 10)/100)
     elif d_army_size[-1] > 30:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 10)/100)
         take_wall() if random.randint(0, 6) == 5 else print("they rejected us")
+        ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 12)/100)
     else:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 5)/100)
         take_wall() if random.randint(0, 5) == 5 else print("they rejected us")
+        ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 15)/100)
     a_army_size.append(aa_army_size)
+    d_army_size.append(ad_army_size)
 
     print(f"the men returned from combat are {a_army_size[-1]}")
     a_stocks()
@@ -102,10 +109,12 @@ def foraging():
     '''
     look for supplies. Attention! if you are attacked
     you have a 1 in 3 chance of losing men in a sortie
-    '''    
+    '''
     food = a_food[-1] + int(scout_number) * random.randint(10, 50)
     a_food.append(food)
     print(f"now we have {food} unit of food!")
+    a_stocks()
+    d_stocks()
 
 
 def discover():
@@ -121,6 +130,8 @@ def discover():
         print("The army in the castle is", d_army_size[-1], "strong")
         resistance = int((d_food[-1]) / (d_army_size[-1]))
         print(f"They can resist {resistance} days")
+    a_stocks()
+    d_stocks()
 
 
 def sabotage():
@@ -130,9 +141,12 @@ def sabotage():
     if random.randint(0, 100) <= int(int(spy_number) * 1.5):
         castle_supply = d_food[-1] - (random.randint(0, 10) * int(spy_number))
         d_food.append(castle_supply)
-        print(d_food[-1])
-
-
+        supplies_destroyed = d_food[-2] - d_food[-1]
+        print(f"sir {name},we destroyed {supplies_destroyed} supplies!")
+    else:
+        discover()
+    a_stocks()
+    d_stocks()
 
 
 def spy():
@@ -144,9 +158,12 @@ def spy():
             sabotage()
         else:
             discover()
+        a_stocks()
+        d_stocks()
     else:
         print(f"sire {name} we have no more spies ... choose another approach")
         choice()
+    
 
 
 def choice():
@@ -175,7 +192,6 @@ def a_stocks():
     print(f"{a_today_stock} are the stocks in the end of this day")
     if a_today_stock < 1:
         end_game()
-    return a_stocks
 
 
 def d_stocks():
@@ -186,14 +202,14 @@ def d_stocks():
     d_food.append(d_today_stock)
     if d_today_stock < 1:
         end_game()
-    return d_stocks
 
 
 def end_game():
-    if a_stocks < 1:
+
+    if a_food[-1] < 1:
         print("we are forced to withdraw! we have no more food!")
         print("You lose the besiege!")
-    if d_stocks < 1:
+    if d_food[-1] < 1:
         print("the enemy can no longer resist! they are short of food!")
         print("You win the besiege!")
 
@@ -204,7 +220,7 @@ def tutorial():
     Shows the types of units and their peculiarities
     """
     tutorial = input("press:1 to start tutorial 2 to start game\n")
-    
+
     if tutorial == "1":
         print('''In this game you will lead the attack of a siege
 at the beginning of the game over the name and difficulty of the siege
@@ -227,12 +243,13 @@ the possible actions will be: Attack, forage and spy\n''')
                     tutorial = input("press:1 to continue tutorial 2 to start game\n")
                     if tutorial == "1":
                         print('''attacking will allow you to try to conquer the walls by losing men.
-        but in the end you can get an estimate based on the men lost
-        on how big the enemy army is\n''')
+but in the end you can get an estimate based on the men lost
+on how big the enemy army is\n''')
                         tutorial = input("press:1 to continue tutorial 2 to start game\n")
                         if tutorial == "1":
                             print('''forages at cost of one day of siege
-can give from 0 to 50 unit of food per scout\n''')
+can give from 0 to 50 unit of food per scout
+but remember you could be attacked in a defender sortie!\n''')
                             tutorial = input("press:1 to continue tutorial 2 to start game\n")
                             if tutorial == "1":
                                 print('''spy can tell us how many men defend the castle
@@ -269,7 +286,6 @@ def start_game():
     global difficulty
     difficulty = input("choose a numerical value between 1 and 3\n")
     prepare_siege()
-    
 
 
 tutorial()
