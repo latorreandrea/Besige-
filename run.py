@@ -21,9 +21,9 @@ print("                                  |___/")
 
 
 def prepare_siege():
-    '''
+    """
     calculate the size of the army based on the choice of units
-    '''
+    """
     global spy_number
     global scout_number
     print("As attacker you will start with 300 units of food")
@@ -50,34 +50,34 @@ def prepare_siege():
         game_stage()
 
     else:
-        print('''your army can't be less than 1 man:
-        remember 1 spy is euqal to 10 soldiers
-        1 scout to 5 soldiers''')
+        print("""your army can't be less than 1 man:
+remember 1 spy is euqal to 10 soldiers
+1 scout to 5 soldiers""")
         tutorial()
         return
 
 
 def take_wall():
-    '''
+    """
     go to attack() definition
-    '''
+    """
     print("sire we have taken the walls!")
 
 
 def repelled():
-    '''
+    """
     go to attack() definition
-    '''
+    """
     print("they rejected us sir!")
 
 
 def attack():
-    '''
+    """
     based on how the attack went, it is estimated how many defend the castle.
     aa_army_size is for current/actual attaking army size.
     ad_army_size is for current/actual defending army size.
     If attack succeeded the player conquer the wall
-    '''
+    """
     if d_army_size[-1] > 90:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 25)/100)
         take_wall() if random.randint(0, 10) == 5 else print("they rejected us")
@@ -107,10 +107,10 @@ def attack():
 
 
 def foraging():
-    '''
+    """
     look for supplies. Attention! if you are attacked
     you have a 1 in 3 chance of losing men in a sortie
-    '''
+    """
     food = a_food[-1] + int(scout_number) * random.randint(10, 50)
     a_food.append(food)
     print(f"now we have {food} unit of food!")
@@ -119,9 +119,9 @@ def foraging():
 
 
 def discover():
-    '''
+    """
     go to spy() definition
-    '''
+    """
     global spy_number
     if random.randint(0, 100) > 50:
         spy_number = int(spy_number) - 1
@@ -136,41 +136,38 @@ def discover():
 
 
 def sabotage():
-    '''
+    """
     go to spy() definition
-    '''
+    """
     if random.randint(0, 100) <= int(int(spy_number) * 1.5):
         castle_supply = d_food[-1] - (random.randint(0, 10) * int(spy_number))
         d_food.append(castle_supply)
         supplies_destroyed = d_food[-2] - d_food[-1]
         print(f"sir {name},we destroyed {supplies_destroyed} supplies!")
+        a_stocks()
+        d_stocks()
     else:
         discover()
-    a_stocks()
-    d_stocks()
 
 
 def spy():
-    '''
+    """
     tell us how many men defend the castle or they can sabotage food supplies
-    '''
-    if spy_number > 0:
+    """
+    if spy_number > "0":
         if random.randint(0, 100) >= 80:
             sabotage()
         else:
             discover()
-        a_stocks()
-        d_stocks()
     else:
         print(f"sire {name} we have no more spies ... choose another approach")
         choice()
-    
 
 
 def choice():
-    '''
+    """
     the user chooses what action to take for the current turn
-    '''
+    """
     print(f"Directions sir {name}?")
     choice = input("press:\n 1 to attack\n 2 to foraging\n 3 to spy\n")
     if choice == "1":
@@ -185,9 +182,9 @@ def choice():
 
 
 def a_stocks():
-    '''
+    """
     Calculate the remaining food at the end of the day for the attakers
-    '''
+    """
     a_today_stock = a_food[-1] - a_army_size[-1]
     a_food.append(a_today_stock)
     print(f"{a_today_stock} are the stocks in the end of this day")
@@ -196,24 +193,25 @@ def a_stocks():
 
 
 def d_stocks():
-    '''
+    """
     Calculate the remaining food at the end of the day for the defenders
-    '''
+    """
     d_today_stock = d_food[-1] - d_army_size[-1]
     d_food.append(d_today_stock)
     if d_today_stock < 1:
         end_game()
 
 
-def end_game():    
+def end_game():
+    global alive
+    alive = False
     if a_food[-1] < 1:
         print("we are forced to withdraw! we have no more food!")
         print("You lose the besiege!")
     if d_food[-1] < 1:
         print("the enemy can no longer resist! they are short of food!")
         print("You win the besiege!")
-    global alive
-    alive = False
+    
 
 
 def tutorial():
@@ -224,38 +222,38 @@ def tutorial():
     tutorial = input("press:1 to start tutorial 2 to start game\n")
 
     if tutorial == "1":
-        print('''In this game you will lead the attack of a siege
+        print("""In this game you will lead the attack of a siege
 at the beginning of the game over the name and difficulty of the siege
-you can choose how to compose your army\n''')
+you can choose how to compose your army\n""")
         tutorial = input("press:1 to continue tutorial 2 to start game\n")
         if tutorial == "1":
-            print('''your army can have the maximum size of 200 points
+            print("""your army can have the maximum size of 200 points
 besides the regular soldiers that are worth only 1 point
-you can choose how many scouts and spy to take with you\n''')
+you can choose how many scouts and spy to take with you\n""")
             tutorial = input("press:1 to continue tutorial 2 to start game\n")
             if tutorial == "1":
-                print('''the value of the spy is 10 points.
+                print("""the value of the spy is 10 points.
 the value of the scouts is 5 points
 the remaining points will be converted into regular soldiers
-up to an army value of 200 points\n''')
+up to an army value of 200 points\n""")
                 tutorial = input("press:1 to continue tutorial 2 to start game\n")
                 if tutorial == "1":
-                    print('''At the start of each turn, you can choose what your army will focus on.
-the possible actions will be: Attack, forage and spy\n''')
+                    print("""At the start of each turn, you can choose what your army will focus on.
+the possible actions will be: Attack, forage and spy\n""")
                     tutorial = input("press:1 to continue tutorial 2 to start game\n")
                     if tutorial == "1":
-                        print('''attacking will allow you to try to conquer the walls by losing men.
+                        print("""attacking will allow you to try to conquer the walls by losing men.
 but in the end you can get an estimate based on the men lost
-on how big the enemy army is\n''')
+on how big the enemy army is\n""")
                         tutorial = input("press:1 to continue tutorial 2 to start game\n")
                         if tutorial == "1":
-                            print('''forages at cost of one day of siege
+                            print("""forages at cost of one day of siege
 can give from 0 to 50 unit of food per scout
-but remember you could be attacked in a defender sortie!\n''')
+but remember you could be attacked in a defender sortie!\n""")
                             tutorial = input("press:1 to continue tutorial 2 to start game\n")
                             if tutorial == "1":
-                                print('''spy can tell us how many men defend the castle
-or they can sabotage food supplies\n''')
+                                print("""spy can tell us how many men defend the castle
+or they can sabotage food supplies\n""")
                                 start_game()
                             if tutorial == "2":
                                 start_game()
