@@ -205,15 +205,15 @@ def d_stocks():
         end_game()
 
 
-def end_game():
-    global alive
-    alive = False
+def end_game():    
     if a_food[-1] < 1:
         print("we are forced to withdraw! we have no more food!")
         print("You lose the besiege!")
     if d_food[-1] < 1:
         print("the enemy can no longer resist! they are short of food!")
         print("You win the besiege!")
+    global alive
+    alive = False
 
 
 def tutorial():
@@ -283,8 +283,12 @@ def game_stage():
 def menu():
     analyses = input("press 1 to analyze match data\n 2 to exit the game\n3 to restart the game\n")
     if analyses == 1:
-        for x, y, z in zip(a_army_size, a_food, ):
-            print(f"day")
+        print("analyzing the battle...")
+        days = []
+        for number in range(len(a_army_size)):
+            days.append(number + 1)
+        for x, y, z in zip(a_army_size, a_food, days):
+            print(f"Day{z}:you have {x} man, {y} food")
 
 
 def start_game():
