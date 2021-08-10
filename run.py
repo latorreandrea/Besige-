@@ -6,6 +6,7 @@ d_army_size = []
 a_army_size = []
 scout_number = 0
 spy_number = 0
+alive = True
 
 
 print("  ____                 _")
@@ -205,7 +206,8 @@ def d_stocks():
 
 
 def end_game():
-
+    global alive
+    alive = False
     if a_food[-1] < 1:
         print("we are forced to withdraw! we have no more food!")
         print("You lose the besiege!")
@@ -272,8 +274,17 @@ or they can sabotage food supplies\n''')
 
 
 def game_stage():
-    while True:
+    while alive == True:
         choice()
+    else:
+        menu()
+
+
+def menu():
+    analyses = input("press 1 to analyze match data\n 2 to exit the game\n3 to restart the game\n")
+    if analyses == 1:
+        for x, y, z in zip(a_army_size, a_food, ):
+            print(f"day")
 
 
 def start_game():
