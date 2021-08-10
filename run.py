@@ -4,7 +4,7 @@ a_food = [300]
 d_food = [1000]
 d_army_size = []
 a_army_size = []
-days = []
+days = [1]
 scout_number = 0
 spy_number = 0
 alive = True
@@ -18,7 +18,6 @@ print(" | |_) | |  __/ \__ \ | | |  __/ | (_| | |  __/")
 print(" |____/   \___| |___/ |_|  \___|  \__, |  \___|")
 print("                                   __/ |")
 print("                                  |___/")
-
 
 
 def prepare_siege():
@@ -155,7 +154,7 @@ def spy():
     """
     tell us how many men defend the castle or they can sabotage food supplies
     """
-    if spy_number > 0:
+    if int(spy_number) > 0:
         if random.randint(0, 100) >= 80:
             sabotage()
         else:
@@ -186,9 +185,12 @@ def a_stocks():
     """
     Calculate the remaining food at the end of the day for the attakers
     """
+    day = int(days[-1]) + 1    
     a_today_stock = a_food[-1] - a_army_size[-1]
     a_food.append(a_today_stock)
     print(f"{a_today_stock} are the stocks in the end of this day")
+    days.append(day)
+    
     if a_today_stock < 1:
         end_game()
 
@@ -273,26 +275,27 @@ def tutorial():
 
 
 def game_stage():
-    while alive == True:
+    while alive is True:
         choice()
-    else:
+    if alive is False:
         menu()
 
 
 def menu():
-    for number in range(len(a_army_size)):
-        days.append(number + 1)
-
-    analyses = input("press 1 to analyze match data\n"
-    "press 2 to exit the game\n" 
-    "press 3 to restart the game\n")
-    if analyses == 1:
-
+    analyses = input("press 1 to analyze match data\n press 2 to exit the game\n press 3 to restart the game\n")
+    if analyses == "1":
         print("analyzing the battle...")
+    for x, y, z in zip(a_army_size, a_food, days):
+        print(f"Day{z}:you have {x} man, {y} food")
+            menu()
 
-        for x, y, z in zip(a_army_size, a_food, days):
-            print(f"Day{z}:you have {x} man, {y} food")
+    if analyses == "2":
+        print("exit from the game...")
+        exit()
 
+    if analyses == "3":
+        print("restarting game...")
+        tutorial()
 
 
 def start_game():
