@@ -219,56 +219,56 @@ def tutorial():
     Shows how to play.
     Shows the types of units and their peculiarities
     """
+    tutorial_text = [
+        (
+            "In this game you will lead the attack of a siege\n"
+            "at the beginning of the game over the name and difficulty of the siege\n"
+            "you can choose how to compose your army\n"
+        ), (
+            "your army can have the maximum size of 200 points\n"
+            "besides the regular soldiers that are worth only 1 point\n"
+            "you can choose how many scouts and spy to take with you\n"
+        ), (
+            "the value of the spy is 10 points.\n"
+            "the value of the scouts is 5 points\n"
+            "the remaining points will be converted into regular soldiers\n"
+            "up to an army value of 200 points\n"
+        ), (
+            "At the start of each turn, you can choose what your army will focus on.\n"
+            "the possible actions will be: Attack, forage and spy\n"
+        ), (
+            "attacking will allow you to try to conquer the walls by losing men.\n"
+            "but in the end you can get an estimate based on the men lost\n"
+            "on how big the enemy army is\n"
+        ), (
+            "forages at cost of one day of siege\n"
+            "can give from 0 to 50 unit of food per scout\n"
+            "but remember you could be attacked in a defender sortie!\n"
+        ), (
+            "spy can tell us how many men defend the castle\n"
+            "or they can sabotage food supplies\n"
+        )
+    ]
+    
     tutorial = input("press:1 to start tutorial 2 to start game\n")
+    while tutorial not in ["1", "2"]:
+        tutorial = input("press:1 to start tutorial 2 to start game\n")
 
-    if tutorial == "1":
-        print("""In this game you will lead the attack of a siege
-at the beginning of the game over the name and difficulty of the siege
-you can choose how to compose your army\n""")
-        tutorial = input("press:1 to continue tutorial 2 to start game\n")
+    i = 0
+    for text in tutorial_text:
+        if len(tutorial_text) == i:
+            print("Actually, the tutorial is finished!")
+            break
         if tutorial == "1":
-            print("""your army can have the maximum size of 200 points
-besides the regular soldiers that are worth only 1 point
-you can choose how many scouts and spy to take with you\n""")
+            print(text)
+        tutorial = input("press:1 to continue tutorial 2 to start game\n")
+        while tutorial not in ["1", "2"]:
             tutorial = input("press:1 to continue tutorial 2 to start game\n")
-            if tutorial == "1":
-                print("""the value of the spy is 10 points.
-the value of the scouts is 5 points
-the remaining points will be converted into regular soldiers
-up to an army value of 200 points\n""")
-                tutorial = input("press:1 to continue tutorial 2 to start game\n")
-                if tutorial == "1":
-                    print("""At the start of each turn, you can choose what your army will focus on.
-the possible actions will be: Attack, forage and spy\n""")
-                    tutorial = input("press:1 to continue tutorial 2 to start game\n")
-                    if tutorial == "1":
-                        print("""attacking will allow you to try to conquer the walls by losing men.
-but in the end you can get an estimate based on the men lost
-on how big the enemy army is\n""")
-                        tutorial = input("press:1 to continue tutorial 2 to start game\n")
-                        if tutorial == "1":
-                            print("""forages at cost of one day of siege
-can give from 0 to 50 unit of food per scout
-but remember you could be attacked in a defender sortie!\n""")
-                            tutorial = input("press:1 to continue tutorial 2 to start game\n")
-                            if tutorial == "1":
-                                print("""spy can tell us how many men defend the castle
-or they can sabotage food supplies\n""")
-                                start_game()
-                            if tutorial == "2":
-                                start_game()
-                        if tutorial == "2":
-                            start_game()
-                    if tutorial == "2":
-                        start_game()
-                if tutorial == "2":
-                    start_game()
-            if tutorial == "2":
-                start_game()
         if tutorial == "2":
-            start_game()
-    if tutorial == "2":
-        start_game()
+            break
+        i += 1
+
+    start_game()
 
 
 def game_stage():
