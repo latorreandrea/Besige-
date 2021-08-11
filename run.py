@@ -61,6 +61,9 @@ def take_wall():
     """
     go to attack() definition
     """
+    global level
+    level = 0
+    level += 1
     print("sire we have taken the walls!")
 
 
@@ -80,23 +83,23 @@ def attack():
     """
     if d_army_size[-1] > 90:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 25)/100)
-        take_wall() if random.randint(0, 10) == 5 else print("they reject us")
+        take_wall() if random.randint(1, 10) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 5)/100)
     elif d_army_size[-1] > 80:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 20)/100)
-        take_wall() if random.randint(0, 8) == 5 else print("they reject us")
+        take_wall() if random.randint(1, 8) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 8)/100)
     elif d_army_size[-1] > 60:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 15)/100)
-        take_wall() if random.randint(0, 7) == 5 else print("they reject us")
+        take_wall() if random.randint(1, 7) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 10)/100)
     elif d_army_size[-1] > 30:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 10)/100)
-        take_wall() if random.randint(0, 6) == 5 else print("they reject us")
+        take_wall() if random.randint(1, 6) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 12)/100)
     else:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 5)/100)
-        take_wall() if random.randint(0, 5) == 5 else print("they reject us")
+        take_wall() if random.randint(1, 5) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 15)/100)
     a_army_size.append(aa_army_size)
     d_army_size.append(ad_army_size)
@@ -111,11 +114,26 @@ def foraging():
     look for supplies. Attention! if you are attacked
     you have a 1 in 3 chance of losing men in a sortie
     """
-    food = a_food[-1] + int(scout_number) * random.randint(10, 50)
-    a_food.append(food)
-    print(f"now we have {food} unit of food!")
-    a_stocks()
-    d_stocks()
+    global scout_number
+
+    if int(scout_number) > 0:
+
+        if random.randint(0, 100) > 80:
+            scout_number = int(scout_number) - 1
+            print("our men have been intercepted!")
+            print(f"now we have {scout_number} scouts...")
+
+        else:
+            food = a_food[-1] + int(scout_number) * random.randint(10, 50)
+            a_food.append(food)
+            print(f"now we have {food} unit of food!")
+
+        a_stocks()
+        d_stocks()
+
+    else:
+        print(f"sire {name} we have no more scout ... choose another approach")
+        choice()
 
 
 def discover():
@@ -152,7 +170,7 @@ def sabotage():
 
 def spy():
     """
-    tell us how many men defend the castle 
+    tell us how many men defend the castle
     or they can sabotage food supplies
     """
     if int(spy_number) > 0:
@@ -302,7 +320,7 @@ def menu():
     if analyses == "1":
         print("analyzing the battle...")
         for x, y, z in zip(a_army_size, a_food, days):
-            print(f"Day{z}:you have {x} man, {y} food")    
+            print(f"Day{z}:you have {x} man, {y} food")
 
     if analyses == "2":
         print("exit from the game...")
@@ -310,6 +328,8 @@ def menu():
 
     if analyses == "3":
         print("restarting game...")
+        alive = True
+        restart()
         tutorial()
 
 
@@ -330,6 +350,34 @@ def start_game():
         difficulty = input("choose a numerical value between 1 and 3\n")
 
     prepare_siege()
+
+
+def conquer_walls():
+    """
+    if the player takes the walls as many times
+    as the selected difficulty then he wins the game
+    """
+    if level == int(difficulty):
+        print(
+            f"Sir {name}! The castle is in our hands!"
+            "You won the game"
+            )
+        menu()
+
+
+def restart():
+    d_army_size.clear()
+    a_army_size.clear()
+    global a_food
+    a_food = [300]
+    global d_food
+    d_food = [1000]
+    global days
+    days = [1]
+    global scout_number
+    scout_number = 0
+    global spy_number
+    spy_number = 0
 
 
 tutorial()
