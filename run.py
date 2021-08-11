@@ -282,16 +282,21 @@ def game_stage():
 
 
 def menu():
+    """
+    the user can choose whether to see
+    the progress of the battle, restart or quit the game
+    """
+    global alive
+    alive = False
     analyses = input(
         "press 1 to analyze match data\n"
         "press 2 to exit the game\n"
-        " press 3 to restart the game\n"
+        "press 3 to restart the game\n"
     )
     if analyses == "1":
         print("analyzing the battle...")
-    for x, y, z in zip(a_army_size, a_food, days):
-        print(f"Day{z}:you have {x} man, {y} food")
-        menu()
+        for x, y, z in zip(a_army_size, a_food, days):
+            print(f"Day{z}:you have {x} man, {y} food")    
 
     if analyses == "2":
         print("exit from the game...")
