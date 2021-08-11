@@ -131,12 +131,18 @@ The game is divided into two main phases:
 
 # Testing:
 
--I used [PEP8 online](http://pep8online.com/) to check code for PEP8 requirements.
+## Fixed Bugs
 
--Input for scout and spy: if i put casual strings the game stop to work.
+- I used [PEP8 online](http://pep8online.com/) to check code for PEP8 requirements. Bugs in writing the code were inherent in the unintentional creation of blanks.
+Still impossible to remove this error results at the end of the code but this does not affect the functioning of the code
 
--The loop phase dont play as i aspected so i create a alive variable to check the loop phase and stop it properly.
+- Input for scout and spy: if i put casual strings the game stop to work so i had to create a function to control if the user use numbers instead strings
 
+- The loop phase dont play as i aspected so i create a alive variable to check the loop phase and stop it properly.
+
+## Existing bugs
+
+- The analysis function does not always seem to correctly calculate the days in which the player chooses to forage
 
 # Deployment
 
@@ -155,4 +161,8 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 # Credit
 
-Thank you for taking the time to read my project. 
+I thank my tutor Marcel who, as usual, gave me excellent practical indications and pushes me to find more elegant solutions in drafting the code.
+
+A special thanks to the beers with friends that allow you to have some nice ideas.
+
+Thank you for taking the time to read my project.
