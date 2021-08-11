@@ -12,7 +12,7 @@ A live version of the game can be found [here](insert link)
 
 # How to play
 
-# Scope
+## Scope
 
 In this game you will lead the attack of a siege at the beginning of the game over the name and difficulty of the siege
 you can choose how to compose your army and how to approach the siege "day by day" via input.
@@ -23,7 +23,7 @@ You win when all the walls of the castle are conquered or when the defending gar
 
 Attention! you could run out of food or men in that case you lose the game!
 
-# Set Army
+## Set Army
 
 Your army can have the maximum size of 200 points.
 and you will start whit only 300 unit of food
@@ -42,7 +42,7 @@ the remaining points will be converted into regular soldiers:
 In the meantime the computer will have an army composed of a variable number of troops ranging from 50 to 100 soldiers.
 The defenders were ready and have amassed 1000 units in their food supplies.
 
-# Maintaining Unit:
+## Maintaining Unit:
 
 At the end of each turn you will consume an amount of food equal to the size of your army.
 
@@ -96,7 +96,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 2. Create a new Heroku app
 
-3. Set the buildbacks to Puthon and NodeJS in that order
+3. Set the buildbacks to Python and NodeJS in that order
 
 4. Link the Heroku app to repository
 

@@ -317,6 +317,12 @@ def menu():
         "press 2 to exit the game\n"
         "press 3 to restart the game\n"
     )
+    while analyses not in ["1", "2", "3"]:
+        analyses = input(
+            "press 1 to analyze match data\n"
+            "press 2 to exit the game\n"
+            "press 3 to restart the game\n"
+        )
     if analyses == "1":
         print("analyzing the battle...")
         for x, y, z in zip(a_army_size, a_food, days):
