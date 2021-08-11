@@ -80,7 +80,7 @@ def attack():
     """
     if d_army_size[-1] > 90:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 25)/100)
-        take_wall() if random.randint(0, 10) == 5 else print("they rejected us")
+        take_wall() if random.randint(0, 10) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 5)/100)
     elif d_army_size[-1] > 80:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 20)/100)
@@ -185,12 +185,12 @@ def a_stocks():
     """
     Calculate the remaining food at the end of the day for the attakers
     """
-    day = int(days[-1]) + 1    
+    day = int(days[-1]) + 1
     a_today_stock = a_food[-1] - a_army_size[-1]
     a_food.append(a_today_stock)
     print(f"{a_today_stock} are the stocks in the end of this day")
     days.append(day)
-    
+
     if a_today_stock < 1:
         end_game()
 
@@ -225,7 +225,7 @@ def tutorial():
     tutorial_text = [
         (
             "In this game you will lead the attack of a siege\n"
-            "at the beginning of the game over the name and difficulty of the siege\n"
+            "at the beginning of the game over the name and difficulty\n"
             "you can choose how to compose your army\n"
         ), (
             "your army can have the maximum size of 200 points\n"
@@ -237,10 +237,10 @@ def tutorial():
             "the remaining points will be converted into regular soldiers\n"
             "up to an army value of 200 points\n"
         ), (
-            "At the start of each turn, you can choose what your army will focus on.\n"
+            "At the start of each turn, choose what your army will do\n"
             "the possible actions will be: Attack, forage and spy\n"
         ), (
-            "attacking will allow you to try to conquer the walls by losing men.\n"
+            "attacking will allow you to conquer the walls by losing men.\n"
             "but in the end you can get an estimate based on the men lost\n"
             "on how big the enemy army is\n"
         ), (
@@ -282,12 +282,16 @@ def game_stage():
 
 
 def menu():
-    analyses = input("press 1 to analyze match data\n press 2 to exit the game\n press 3 to restart the game\n")
+    analyses = input(
+        "press 1 to analyze match data\n"
+        "press 2 to exit the game\n"
+        " press 3 to restart the game\n"
+    )
     if analyses == "1":
         print("analyzing the battle...")
     for x, y, z in zip(a_army_size, a_food, days):
         print(f"Day{z}:you have {x} man, {y} food")
-            menu()
+        menu()
 
     if analyses == "2":
         print("exit from the game...")
@@ -304,7 +308,9 @@ def start_game():
     global name
     name = input("player name:\n")
 
-    print("how many walls will this castle have? (This will affect the difficulty of the game)")
+    print(
+        "how many walls will this castle have?\n"
+        "(This will affect the difficulty of the game)\n")
     global difficulty
     difficulty = input("choose a numerical value between 1 and 3\n")
     prepare_siege()
