@@ -85,8 +85,8 @@ def check_user_input(input):
         val = int(input)
         print("valid input")
     except ValueError:
-            print("the game accepts only integer values")
-            prepare_siege()
+        print("the game accepts only integer values")
+        prepare_siege()
 
 
 def attack():
