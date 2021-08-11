@@ -84,19 +84,19 @@ def attack():
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 5)/100)
     elif d_army_size[-1] > 80:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 20)/100)
-        take_wall() if random.randint(0, 8) == 5 else print("they rejected us")
+        take_wall() if random.randint(0, 8) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 8)/100)
     elif d_army_size[-1] > 60:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 15)/100)
-        take_wall() if random.randint(0, 7) == 5 else print("they rejected us")
+        take_wall() if random.randint(0, 7) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 10)/100)
     elif d_army_size[-1] > 30:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 10)/100)
-        take_wall() if random.randint(0, 6) == 5 else print("they rejected us")
+        take_wall() if random.randint(0, 6) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 12)/100)
     else:
         aa_army_size = int(a_army_size[-1] - (a_army_size[-1] * 5)/100)
-        take_wall() if random.randint(0, 5) == 5 else print("they rejected us")
+        take_wall() if random.randint(0, 5) == 5 else print("they reject us")
         ad_army_size = int(d_army_size[-1] - (d_army_size[-1] * 15)/100)
     a_army_size.append(aa_army_size)
     d_army_size.append(ad_army_size)
@@ -152,7 +152,8 @@ def sabotage():
 
 def spy():
     """
-    tell us how many men defend the castle or they can sabotage food supplies
+    tell us how many men defend the castle 
+    or they can sabotage food supplies
     """
     if int(spy_number) > 0:
         if random.randint(0, 100) >= 80:
@@ -170,6 +171,11 @@ def choice():
     """
     print(f"Directions sir {name}?")
     choice = input("press:\n 1 to attack\n 2 to foraging\n 3 to spy\n")
+
+    while choice not in ["1", "2", "3"]:
+        print(f"sir {name} we wouldn't know how to do it ...")
+        choice = input("press:\n 1 to attack\n 2 to foraging\n 3 to spy\n")
+
     if choice == "1":
         print("we are attacking the walls...")
         attack()
@@ -317,7 +323,12 @@ def start_game():
         "how many walls will this castle have?\n"
         "(This will affect the difficulty of the game)\n")
     global difficulty
+
     difficulty = input("choose a numerical value between 1 and 3\n")
+
+    while difficulty not in ["1", "2", "3"]:
+        difficulty = input("choose a numerical value between 1 and 3\n")
+
     prepare_siege()
 
 
