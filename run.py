@@ -32,7 +32,10 @@ def prepare_siege():
     print(f"{name},how many men will follow you?\n")
 
     spy_number = input("how many spy do you take?\n")
+    check_user_input(spy_number)
+
     scout_number = input("how many scout do you take?\n")
+    check_user_input(scout_number)
     MAX_SIZE = 200
 
     print("creating your army...")
@@ -72,6 +75,18 @@ def repelled():
     go to attack() definition
     """
     print("they rejected us sir!")
+
+
+def check_user_input(input):
+    """
+    Convert it into integer to be sure we dont have a string input
+    """
+    try:
+        val = int(input)
+        print("valid input")
+    except ValueError:
+            print("the game accepts only integer values")
+            prepare_siege()
 
 
 def attack():
