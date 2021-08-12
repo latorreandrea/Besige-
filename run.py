@@ -236,7 +236,6 @@ def a_stocks():
     a_food.append(a_today_stock)
     print(f"{a_today_stock} are the stocks in the end of this day")
 
-
     if a_today_stock < 1:
         end_game()
 
@@ -306,7 +305,7 @@ def tutorial():
     i = 0
     for text in tutorial_text:
 
-        if tutorial == "1":            
+        if tutorial == "1":
             print(text)
 
         if tutorial == "2":
@@ -351,7 +350,7 @@ def menu():
         )
     if analyses == "1":
         print("analyzing the battle...")
-        
+
         for x, y, z in zip(a_army_size, a_food, days):
             print(f"Day{z}:you have {x} man, {y} food")
 
