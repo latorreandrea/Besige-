@@ -8,9 +8,28 @@ BESIGE is a Python terminal game, where the user lead an attak to a castle
 
 A live version of the game can be found [here](https://besige.herokuapp.com/)
 
-# How to play
+# table of content:
+
+- [How to play](#howtoplay)
+    - [Scope](#scope)
+    - [Set Army](#army)
+    - [Maintaining Unit](#maintaining)
+    - [Spy](#spy)
+    - [Scout](#scout)
+    - [Regular soldier](#soldier)
+- [Features](#features)
+- [Data Model](#model)
+- [Technologies Used](#technologies)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credit](#credit)
+
+
+# How to play:
+<a name="howtoplay"></a> 
 
 ## Scope
+<a name="scope"></a> 
 
 In this game you will lead the attack of a siege at the beginning of the game over the name and difficulty of the siege
 you can choose how to compose your army and how to approach the siege "day by day" via input.
@@ -25,7 +44,9 @@ Attention! you could run out of food or men in that case you lose the game!
 
 ![perdere per mancanza di cibo](https://user-images.githubusercontent.com/80674568/129058171-ffe9c65b-05d5-4452-bce0-976bae499b6b.PNG)
 
+
 ## Set Army
+<a name="army"></a> 
 
 Your army can have the maximum size of 200 points.
 and you will start whit only 300 unit of food
@@ -47,7 +68,7 @@ In the meantime the computer will have an army composed of a variable number of 
 The defenders were ready and have amassed 1000 units in their food supplies.
 
 ## Maintaining Unit:
-
+<a name="maintaining"></a>
 At the end of each turn you will consume an amount of food equal to the size of your army.
 
 Don't make it too big that you eat too much food quickly and not too small that you can't attack the walls.
@@ -55,7 +76,7 @@ Don't make it too big that you eat too much food quickly and not too small that 
 ![perdere per mancanza di cibo](https://user-images.githubusercontent.com/80674568/129058171-ffe9c65b-05d5-4452-bce0-976bae499b6b.PNG)
 
 ## Spy:
-
+<a name="spy"></a>
 spy can tell to the user how many men defend the castle.
 if the user is lucky he may be able to sabotage the computer's food supply.
 Sabotage is related to the number of spies in the army!
@@ -67,13 +88,13 @@ Attention spying is a risky action and you could risk losing a spy in action.
 If you run out of spies, you will no longer be able to spy on your opponent
 
 ## Scout:
-
+<a name="scout"></a>
 The scouts allow to forages at cost of one day of siege can give from 10 to 50 unit of food per scout
 
 but remember you could be attacked in a defender sortie!
                         
 ## Regular soldier:
-
+<a name="soldier"></a>
 They are the meat of the slaughter, they number in the army, and as long as you have an army you can storm the castle
 Attacking will allow you to try to conquer the walls by losing men.
 but in the end you can get an estimate based on the men lost on how big the enemy army is:
@@ -92,6 +113,8 @@ If the defenders are less than 30, you will lose 5% of your army
 
 
 # Features:
+<a name="features"></a>
+
 ## Existing Features:
 
 - Player select his army:
@@ -120,8 +143,10 @@ If the defenders are less than 30, you will lose 5% of your army
 - Implement functions that make the computer more aggressive
 - Make the game actually more balanced
 - Add other elements of randomness eg. the beginning of illnesses and the arrival of reinforcements for the besieged
+- Add an analyze function for defenders
 
 # Data Model:
+<a name="model"></a>
 
 ![Siedge Game in python!](https://user-images.githubusercontent.com/80674568/129062806-0d3aead7-9cc6-41b2-9585-9e903111c6ff.jpeg)
 
@@ -129,7 +154,28 @@ The game is divided into two main phases:
 - Preparation phase (where the player and the pc choose which data to start with)
 - Game stage (the loop phase that will repeat until the attackers run out of units or food or when the defenders run out of food or the attackers conquer the walls)
 
+# Technologies Used
+<a name="technologies"></a>
+
+- [Python](https://www.python.org/)
+  - used to write the code.
+
+- [Lucidchart](https://www.lucidchart.com/)
+  - used to plan the operation of the code.
+
+- [PEP8Online](http://pep8online.com/checkresult)
+  - used to check the code for PEP8 requirements.
+
+- [GitHub](https://github.com/) 
+  - used to store the source code and repository. 
+
+- [Heroku](https://id.heroku.com/) 
+  - used to deploy my code.
+
+
+
 # Testing:
+<a name="testing"></a>
 
 ## Fixed Bugs
 
@@ -140,13 +186,11 @@ Still impossible to remove this error results at the end of the code but this do
 
 - The loop phase dont play as i aspected so i create a alive variable to check the loop phase and stop it properly.
 
-## Existing bugs
-
-- The analysis function does not always seem to correctly calculate the days in which the player chooses to forage
+- The analysis function does not always seem to correctly calculate the days in which the player chooses to forage the problem was given by the fact that if not modified the data of the size of the armies was not "collected" so I added the append function to all the functions that did not foresee the change of the size of the army
 
 # Deployment
-
-This project was deployed using Code Institute's mock terminal for Heroku.
+<a name="deployment"></a>
+This project was deployed using Heroku.
 
 1. Fork or clone this repository
 
@@ -160,7 +204,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 
 # Credit
-
+<a name="credit"></a>
 I thank my tutor Marcel who, as usual, gave me excellent practical indications and pushes me to find more elegant solutions in drafting the code.
 
 A special thanks to the beers with friends that allow you to have some nice ideas.
