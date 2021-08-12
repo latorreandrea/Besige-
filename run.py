@@ -195,6 +195,8 @@ def spy():
             discover()
     else:
         print(f"sire {name} we have no more spies ... choose another approach")
+        a_stocks()
+        d_stocks()
         choice()
 
 
@@ -298,17 +300,21 @@ def tutorial():
 
     i = 0
     for text in tutorial_text:
-        if len(tutorial_text) == i:
-            print("Actually, the tutorial is finished!")
-            break
-        if tutorial == "1":
+
+        if tutorial == "1":            
             print(text)
-            tutorial = input("press:1 to continue tutorial 2 to start game\n")
-        while tutorial not in ["1", "2"]:
-            tutorial = input("press:1 to continue tutorial 2 to start game\n")
+
         if tutorial == "2":
             start_game()
+
+        tutorial = None
+
+        while tutorial not in ["1", "2"]:
+            tutorial = input("press:1 to continue tutorial 2 to start game\n")
         i += 1
+        if i == len(tutorial_text):
+            print("Actually, the tutorial is finished!")
+            break
 
     start_game()
 
