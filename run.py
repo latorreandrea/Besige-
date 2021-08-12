@@ -149,6 +149,8 @@ def foraging():
     else:
         print(f"sire {name} we have no more scout ... choose another approach")
         choice()
+    a_army_size.append(a_army_size[-1])
+    d_army_size.append(d_army_size[-1])
 
 
 def discover():
@@ -198,6 +200,8 @@ def spy():
         a_stocks()
         d_stocks()
         choice()
+    a_army_size.append(a_army_size[-1])
+    d_army_size.append(d_army_size[-1])
 
 
 def choice():
@@ -227,10 +231,11 @@ def a_stocks():
     Calculate the remaining food at the end of the day for the attakers
     """
     day = int(days[-1]) + 1
+    days.append(day)
     a_today_stock = a_food[-1] - a_army_size[-1]
     a_food.append(a_today_stock)
     print(f"{a_today_stock} are the stocks in the end of this day")
-    days.append(day)
+
 
     if a_today_stock < 1:
         end_game()
@@ -346,6 +351,7 @@ def menu():
         )
     if analyses == "1":
         print("analyzing the battle...")
+        
         for x, y, z in zip(a_army_size, a_food, days):
             print(f"Day{z}:you have {x} man, {y} food")
 
